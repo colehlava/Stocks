@@ -12,19 +12,22 @@
         echo $stock;
         echo ": $";
         $filename = $stock . ".price";
-        $contents = file_get_contents($filename);
-        $contents = trim($contents);
-        echo $contents;
+        if (file_exists($filename)) {
+            $contents = file_get_contents($filename);
+            $contents = trim($contents);
+            echo $contents;
+        }
+        else {
+            continue;
+        }
         echo "</p>";
     }
 ?>
 <br>
-<form action="/action_page.php">
-    <label for="fname">First name:</label>
+<form action="action_form.php" method="post">
+    <label for="fname">Add new stock:</label>
     <input type="text" id="fname" name="fname"><br><br>
-    <label for="lname">Last name:</label>
-    <input type="text" id="lname" name="lname"><br><br>
-    <input type="submit" value="Submit">
+    <input type="submit" name="submit" value="submit">
 </form>
 </div>
 </body>
