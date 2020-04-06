@@ -16,6 +16,6 @@
         }
         ?>
     </p>
-    <p><a href="index.html">Return to Homepage</a></p>
+    <p><a href="index.html">Return to Stocklist</a></p>
 </body>
 </html>
