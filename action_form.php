@@ -5,6 +5,7 @@
     <title>Submit new Stock</title>
 </head>
 <body>
+<div align="center">
     <h1>Add New Stock</h1>
     <p>Added stock: <?php
         if (isset($_POST['fname'])) {
@@ -12,10 +13,12 @@
             echo $name;
             $name .= "\n";
             $file = '/home/pi/Documents/Apps/Stocks/Stocks/watchlist.txt';
-            file_put_contents($file, $name, FILE_APPEND | LOCK_EX);
+            $old = file_get_contents($file);
+            file_put_contents($file, $name . $old);
         }
         ?>
     </p>
     <p><a href="index.html">Return to Stocklist</a></p>
+</div>
 </body>
 </html>
