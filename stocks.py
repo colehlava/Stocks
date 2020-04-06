@@ -19,7 +19,11 @@ def main():
         for symbol in symbolList:
             command_getHTML = "wget -q -O " + symbol + ".html_content https://finance.yahoo.com/quote/" + symbol
             os.system(command_getHTML)
-            #print(command_getHTML)
+            os.system('echo $? > command.rv')
+            with open('command.rv', 'r') as crv:
+                return_val = int(crv.readline().strip())
+                if return_val != 0:
+                    continue
 
             grep1 = r"<span class=\"Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)\" data-reactid=\"50\">[0-9]*\,\?[0-9]*\,\?[0-9]*\.[0-9][0-9]"
             grep2 = r"[0-9]*\,\?[0-9]*\,\?[0-9]*\.[0-9][0-9]"
