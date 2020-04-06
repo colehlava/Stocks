@@ -10,11 +10,11 @@ def main():
 
     symbolList = []
 
-    # Read stocklist
-    with open('watchlist.txt', 'r') as w:
-        symbolList = w.read().split()
-
     while True:
+        # Read stocklist
+        with open('watchlist.txt', 'r') as w:
+            symbolList = w.read().split()
+
         # Update each stock price in watchlist
         for symbol in symbolList:
             command_getHTML = "wget -q -O " + symbol + ".html_content https://finance.yahoo.com/quote/" + symbol
@@ -29,6 +29,7 @@ def main():
 
         # Update webpage and delete all generated data
         os.system("php index.php > h.html")
+        os.system("sudo cp h.html /var/www/html/Stocks/index.html")
         #os.system("rm *.html_content *.price")
         time.sleep(2)
 
